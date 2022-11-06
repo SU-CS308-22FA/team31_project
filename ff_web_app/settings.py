@@ -76,8 +76,12 @@ WSGI_APPLICATION = 'ff_web_app.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'heroku_9ba2af4d49c7379',
+        'PASSWORD':'49e262cf',
+        'USER':'b69aadf576bf96',
+        'HOST':'us-cdbr-east-06.cleardb.net',
+        'PORT':'3306'
     }
 }
 
