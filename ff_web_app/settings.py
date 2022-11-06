@@ -77,10 +77,10 @@ WSGI_APPLICATION = 'ff_web_app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'heroku_9ba2af4d49c7379',
-        'PASSWORD':'49e262cf',
-        'USER':'b69aadf576bf96',
-        'HOST':'us-cdbr-east-06.cleardb.net',
+        'NAME': 'llfkrtgamo0g87qx',
+        'PASSWORD':'z4ejvxpfskf0hoz4',
+        'USER':'mf5d1pdoymur420m',
+        'HOST':'o2olb7w3xv09alub.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
         'PORT':'3306'
     }
 }
