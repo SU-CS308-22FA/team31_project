@@ -21,4 +21,40 @@ def create_user_profile(sender,instance,created,**kwargs):
 def save_user_profile(sender,instance,created,**kwargs):
     instance.user_profile.save()
 
- 
+class TradingCard(models.Model):
+    card_title = models.CharField(max_length = 50,blank = False)
+    card_explanation = models.CharField(max_length = 250, blank = False)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    stock = models.PositiveIntegerField(default=0)
+    image = models.URLField(max_length = 200)
+    like = models.PositiveIntegerField(default=0)
+    def __unicode__(self):
+            return self.card_title
+    def __str__(self):
+        return self.card_title
+class Favorites(models.Model):
+    class Meta(object):
+        unique_together = (("user","card"))
+    user = models.ForeignKey(User,on_delete=models.CASCADE,default="")
+    card = models.ForeignKey(TradingCard,on_delete=models.CASCADE,default="")
+
+    def __unicode__(self):
+        return self.name
+
+class Wishlist(models.Model):
+    class Meta(object):
+        unique_together = (("user","card"))
+    user = models.ForeignKey(User,on_delete=models.CASCADE,default="")
+    card = models.ForeignKey(TradingCard,on_delete=models.CASCADE,default="")
+
+    def __unicode__(self):
+        return self.name
+
+class Sold(models.Model):
+    class Meta(object):
+        unique_together = (("user","card"))
+    user = models.ForeignKey(User,on_delete=models.CASCADE,default="")
+    card = models.ForeignKey(TradingCard,on_delete=models.CASCADE,default="")
+
+    def __unicode__(self):
+        return self.name

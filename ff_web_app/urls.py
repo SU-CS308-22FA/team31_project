@@ -23,6 +23,14 @@ urlpatterns = [
     path('signup/',views.Signup,name="Sign Up Page"),
     path('dashboard/',views.DashboardUser,name="Edit Profile Page"),
     path('dashboard/profile',views.UpdateProfile,name="Edit Profile Page"),
+    path('dashboard/favorites',views.SelfServiceFavorites,name="Favorites Page"),
+    path('dashboard/like',views.CreateLike,name=" Save Favorite Page"),
+    path('dashboard/dislike',views.RemoveLike,name="Delete Favorites Page"),
+    path('dashboard/wishlist',views.SelfServiceWishlist,name="Wishlist Page"),
+    path('dashboard/add_wishlist',views.CreateWishlist,name=" Save Wishlist Page"),
+    path('dashboard/remove_wishlist',views.RemoveWishlist,name="Delete Wishlist Page"),
+    path('public/wishlist',views.PublicWishlist,name="Public Wishlist Page"),
+
     path('delete_account',views.DeleteAccount,name="Delete Account Page"),
     path('logout',views.Logout,name="Logout Page")
 

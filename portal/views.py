@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from .forms import UserCreationForm,UserForm,UserProfileForm
-from .models import StaffProfile
+from .models import StaffProfile, Favorites, TradingCard, Wishlist
 from django.contrib.sites.shortcuts import get_current_site
 
 # Create your views here.
@@ -86,3 +86,81 @@ def DeleteAccount(request):
 def Logout(request):
     logout(request)
     return redirect("/login")
+
+# Favorites
+@login_required()
+def SelfServiceFavorites(request):
+    if(request.method == "GET"):
+        user = request.user
+        favorites = list(Favorites.objects.filter(user = user).values())
+        favorites = [favorite["card_id"] for favorite in favorites]
+        cards = list(TradingCard.objects.filter(pk__in = favorites).values())
+        return render(request,'dashboard/favorites.html',{"favorites":cards})
+
+@login_required()
+def CreateLike(request):
+    if(request.method == "GET"):
+        id = request.GET.get("id")
+        card = TradingCard.objects.get(id = id)
+        card.like += 1
+        card.save()
+        favorite =  Favorites(user = request.user, card = card)
+        favorite.save()
+        return HttpResponse(status=200)
+
+@login_required()
+def RemoveLike(request):
+    if(request.method == "GET"):
+        id = request.GET.get("id")
+        from_ = request.GET.get("from")
+        card = TradingCard.objects.get(id = id)
+        card.like -= 1
+        card.save()
+        favorite =  Favorites.objects.get(user = request.user, card = card)
+        favorite.delete()
+        
+        if(from_ == "favorites"):
+            return redirect("/dashboard/favorites")
+        else:
+            return HttpResponse(status=200)
+    
+@login_required()
+def SelfServiceWishlist(request):
+    if(request.method == "GET"):
+        user = request.user
+        wishlists = list(Wishlist.objects.filter(user = user).values())
+        wishlist = [wishlist["card_id"] for wishlist in wishlists]
+        cards = list(TradingCard.objects.filter(pk__in = wishlist).values())
+        return render(request,'dashboard/wishlist.html',{"wishlists":cards})
+
+@login_required()
+def CreateWishlist(request):
+    if(request.method == "GET"):
+        id = request.GET.get("id")
+        card = TradingCard.objects.get(id = id)
+        card.save()
+        wishlist =  Wishlist(user = request.user, card = card)
+        wishlist.save()
+        return HttpResponse(status=200)
+
+@login_required()
+def RemoveWishlist(request):
+    if(request.method == "GET"):
+        id = request.GET.get("id")
+        from_ = request.GET.get("from")
+        card = TradingCard.objects.get(id = id)
+        card.save()
+        wishlist =  Wishlist.objects.get(user = request.user, card = card)
+        wishlist.delete()
+        if(from_ == "wishlist"):
+            return redirect("/dashboard/wishlist")
+        else:
+            return HttpResponse(status=200)
+
+def PublicWishlist(request):
+    if(request.method == "GET"):
+        user = request.GET.get("id")
+        wishlists = list(Wishlist.objects.filter(user__id = user).values())
+        wishlist = [wishlist["card_id"] for wishlist in wishlists]
+        cards = list(TradingCard.objects.filter(pk__in = wishlist).values())
+        return render(request,'dashboard/public_wishlist.html',{"wishlists":cards})
