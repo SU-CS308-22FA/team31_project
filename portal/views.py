@@ -164,3 +164,28 @@ def PublicWishlist(request):
         wishlist = [wishlist["card_id"] for wishlist in wishlists]
         cards = list(TradingCard.objects.filter(pk__in = wishlist).values())
         return render(request,'dashboard/public_wishlist.html',{"wishlists":cards})
+
+def MarketplaceHome(request):
+    if(request.method == "GET"):
+        items = []
+        if( request.GET.get("searchText")):
+            items = list(TradingCard.objects.filter(
+                Q(card_title__contains=request.GET.get("searchText")) |
+                Q(card_explanation__contains=request.GET.get("searchText"))
+            ))
+        elif(request.GET.get("priceRate") or request.GET.get("filterType")):
+            filterType = request.GET.get("filterType")
+
+            if(filterType == "1"):
+                items = list(TradingCard.objects.all().order_by('-like')[:6])
+            elif(filterType == "2"):
+                items = list(TradingCard.objects.all().order_by('-price')[:6])
+            elif(filterType == "3"):
+                items = list(TradingCard.objects.all().order_by('price')[:6])
+            elif(filterType == "4"):
+                items = list(TradingCard.objects.all().order_by('-id')[:6])
+            elif(filterType == "5"):
+                items = list(TradingCard.objects.all().order_by('id')[:6])
+        else:
+            items = list(TradingCard.objects.all().order_by('-id')[:6])
+        return render(request,'store/index.html',{'items':items})

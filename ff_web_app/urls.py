@@ -31,6 +31,7 @@ urlpatterns = [
     path('dashboard/remove_wishlist',views.RemoveWishlist,name="Delete Wishlist Page"),
     path('public/wishlist',views.PublicWishlist,name="Public Wishlist Page"),
 
+    path('store/',views.MarketplaceHome,name = "Marketplace Landing Page"),
     path('delete_account',views.DeleteAccount,name="Delete Account Page"),
     path('logout',views.Logout,name="Logout Page")
 
