@@ -189,3 +189,12 @@ def MarketplaceHome(request):
         else:
             items = list(TradingCard.objects.all().order_by('-id')[:6])
         return render(request,'store/index.html',{'items':items})
+def MarketplaceDetail(request):
+    if(request.method == "GET"):
+        item = request.GET.get("item_id")
+        card = TradingCard.objects.get(pk=item)
+        print(card)
+        if(card != None):
+            return render(request,'store/product-details.html',{'card':card})
+        else:
+            return HttpResponse(status=404)        

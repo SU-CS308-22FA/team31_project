@@ -1,0 +1,37 @@
+{% extends 'store/base.html' %}
+{% block content %}	
+	<section>
+		<div class="container">
+			<div class="row">				
+				<div class="col-sm-9 padding-right">
+					<div class="product-details"><!--product-details-->
+						<div class="col-sm-5">
+							<div class="view-product">
+								<img src="{{ card.image }}" alt="" />
+							</div>
+						</div>
+						<div class="col-sm-7">
+							<div class="product-information"><!--/product-information-->
+								<h2>{{ card.card_title }}</h2>
+								<p>Web ID: {{ card.id }}</p>
+								<img src="images/product-details/rating.png" alt="" />
+								<span>
+									<span>{{ card.price }} TL </span>
+									<label>Quantity:</label>
+									<input type="text" value="0" />
+									<button type="button" class="btn btn-fefault cart">
+										<i class="fa fa-shopping-cart"></i>
+										Add to cart
+									</button>
+								</span>
+								<p><b>Availability:</b> {% if card.stock == 0 %} Out of Stock {% else %} In Stock {% endif %}</p>
+								<p><b>Description:</b> {{ card.card_explanation }}</p>
+								<a><i class="fa fa-heart"></i> {{ card.like }}</a>
+							</div><!--/product-information-->
+						</div>
+					</div><!--/product-details-->		
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}
