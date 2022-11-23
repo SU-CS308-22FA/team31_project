@@ -186,6 +186,22 @@
     Url.select();
     document.execCommand("copy");
   }
+  function cpClip() {
+        // Get the text field
+        var copyText = document.getElementById("copy_link");
+
+        // Select the text field
+        copyText.select();
+        copyText.setSelectionRange(0, 99999); // For mobile devices
+
+        
+        var base_url = window.location.origin;
+        // Copy the text inside the text field
+        navigator.clipboard.writeText(base_url + copyText.value);
+
+        // Alert the copied text
+        alert("Copied the text: " + copyText.value);
+    }
 </script>
 <!-- Github buttons -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
