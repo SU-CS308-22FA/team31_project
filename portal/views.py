@@ -159,10 +159,13 @@ def RemoveWishlist(request):
 
 def PublicWishlist(request):
     if(request.method == "GET"):
-        user = request.GET.get("id")
+        user = int(request.GET.get("user_id"))
         wishlists = list(Wishlist.objects.filter(user__id = user).values())
+        print(wishlists)
         wishlist = [wishlist["card_id"] for wishlist in wishlists]
+        print(wishlist)
         cards = list(TradingCard.objects.filter(pk__in = wishlist).values())
+        print(cards)
         return render(request,'dashboard/public_wishlist.html',{"wishlists":cards})
 
 def MarketplaceHome(request):
