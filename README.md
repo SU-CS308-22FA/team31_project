@@ -6,13 +6,14 @@ URL: https://tff-trading-cards.herokuapp.com/login
 Description: This project focuses on selling trading cards. Such cards are sold by Turkish Football Federation. 
 
 User Documentation: 
-    #How to install the software? 
-        
-    #How to run the software
-        
-    #How to report a bug
     
-    #Known bugs
+    # How to install the software? 
+        
+    # How to run the software
+        
+    # How to report a bug
+    
+    # Known bugs
 
 
 Developer Documentation:
