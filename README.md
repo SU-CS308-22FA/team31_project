@@ -1,39 +1,21 @@
-# TFF Web App
 
-## An application 
+## TFF Trading Cards
 
-Card
-    - Resmi
-    - İsmi
-    - Id
-    - Açıklaması (Optional)
-    - Fiyatı
-    - Stok
+URL: https://tff-trading-cards.herokuapp.com/login
 
-Favoriler
-    - Kişi id
-    - Card id
+Description: This project focuses on selling trading cards. Such cards are sold by Turkish Football Federation. 
 
-Wishlist
-    - Kişi id
-    - Card id
+User Documentation: 
+    #How to install the software? 
+        
+    #How to run the software
+        
+    #How to report a bug
+    
+    #Known bugs
 
-Aitlik
-    - Kişi
-    - Card id
-    # satın alma sonrası item stoğu düşürülecek
 
-Ekranlar:
-
-    Favoriler:
-        - login_required
-        - user id match
-        - unlike refresh
-
-    Wishlist:
-        - login_required
-        - user id match
-        - unlike refresh
-        - public 
-        - share wishlist buttonu düzeltilicek ve en kötü clipboarda kaydedicek.
-            - wishlist.html 10. satır
+Developer Documentation:
+How to obtain the source code (Be aware that if you're using multiple repositories -Backend and frontend separated in different repos- you need to include them, same as with submodules. You need to provide clear instructions for how to obtain all sources.)
+The layout of the directory structure. (What do folders contain and where to find source files, tests, documentation, data, etc.)
+How to build and deploy the software. (You need to provide clear instructions for how to use your project's build system and how you deployed it to your remote system.)
