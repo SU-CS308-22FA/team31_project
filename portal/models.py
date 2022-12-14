@@ -55,6 +55,27 @@ class Sold(models.Model):
         unique_together = (("user","card"))
     user = models.ForeignKey(User,on_delete=models.CASCADE,default="")
     card = models.ForeignKey(TradingCard,on_delete=models.CASCADE,default="")
+    count = models.PositiveIntegerField(default=0)
 
+
+    def __unicode__(self):
+        return self.name
+
+class Cart(models.Model):
+    class Meta(object):
+        unique_together = (("user","card"))
+    user = models.ForeignKey(User,on_delete=models.CASCADE,default="")
+    card = models.ForeignKey(TradingCard,on_delete=models.CASCADE,default="")
+    count = models.PositiveIntegerField(default=0)
+
+    def __unicode__(self):
+        return self.name
+
+class UserPaymentMethod(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE,default="")
+    cvv = models.TextField(max_length=3,blank=True)
+    credit_card = models.TextField(max_length=16,blank=True)
+    owner_name = models.CharField(max_length=30,blank=True)
+    date = models.CharField(max_length=30,blank=True)
     def __unicode__(self):
         return self.name

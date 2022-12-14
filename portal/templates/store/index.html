@@ -106,18 +106,18 @@
 											<img src="{{ card.image }}" width = "100" height="350" alt="" />
 											<h2>{{ card.price }} TL</h2>
 											<p >{{ card.card_title }}</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											<a href="/store/add_to_cart" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 											<div class="product-overlay">
 												<div class="overlay-content">
 													<h2>{{ card.price }} TL</h2>
-													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+													<a href="/store/add_to_cart?item_id={{card.id}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 												</div>
 											</div>
 										</div>
 										<div class="product-overlay">
 											<div class="overlay-content">
 												<h2>{{ card.price }} TL</h2>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												<a href="/store/add_to_cart?item_id={{card.id}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 											</div>
 										</div>
 								</div>
