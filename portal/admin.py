@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import StaffProfile, TradingCard, Favorites, Wishlist, Sold
+from .models import StaffProfile, TradingCard, Favorites, Wishlist, Sold, Cart, UserPaymentMethod
 from django.contrib.sessions.models import Session
 import pprint
 
@@ -36,9 +36,19 @@ class WishlistAdmin(admin.ModelAdmin):
 admin.site.register(Wishlist,WishlistAdmin)
 
 class SoldAdmin(admin.ModelAdmin):
-    list_display = ('user','card')
+    list_display = ('user','card','count')
 
 admin.site.register(Sold,SoldAdmin)
+
+class CartAdmin(admin.ModelAdmin):
+    list_display = ('user','card','count')
+
+admin.site.register(Cart,CartAdmin)
+
+class UserPaymentMethodAdmin(admin.ModelAdmin):
+    list_display = ('user','cvv','credit_card','owner_name','date')
+
+admin.site.register(UserPaymentMethod,UserPaymentMethodAdmin)
 
 
 '''
