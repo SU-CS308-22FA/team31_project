@@ -28,7 +28,7 @@ FEATURES
 
   Installation: Firstly you need to install python and django to your device. Then, after clone/pulling our project you can use 
   
-  ### python manage.py runserver 
+  python manage.py runserver 
   
   command and see the project on your local device.
 
