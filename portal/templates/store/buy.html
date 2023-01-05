@@ -1,0 +1,119 @@
+{% extends 'store/base.html' %}
+{% block content%}
+
+<section id="do_action">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                {% if showPayment %}
+                <div class="review-payment">
+                    <h2>Payment Methods</h2>
+                </div>
+        
+                <div class="table-responsive cart_info">
+                    <table class="table table-condensed">
+                        <thead>
+                            <tr class="cart_menu">
+                                <td class="description">Card Number</td>
+                                <td class="price"></td>
+        
+                            </tr>
+                        </thead>
+                        <tbody>
+        
+                            {% for a in payment_methods%}
+                            <tr>
+                                <td class="cart_description">
+                                    <input type="checkbox">
+                                    <label><a href="">{{ a.credit_card }}</a></label>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+            </div>
+            <div class="col-sm-6">
+
+                <div class="total_area">
+                    <ul>
+                        <li>Cart Sub Total <span>{{ total}} TL</span></li>
+                        <li>Eco Tax <span>20 TL</span></li>
+                        <li>Shipping Cost <span>Free</span></li>
+                        <li>Total <span>{{total}} + 20 TL</span></li>
+                    </ul>
+                </div>
+                {% for b in cart %} 
+
+                <div class="popup" onclick="myFunction()"> <a class="btn btn-default check_out" href='/store/add_purch?item_id={{b.0.id}}&pk_id={{b.1.id}}'>Check Out</a>
+                    <span class="popuptext" id="myPopup">Order received! </span>
+                </div>
+
+                {% endfor %}
+                <style>
+                    .popup {
+                    position: relative;
+                    display: inline-block;
+                    cursor: pointer;
+                    }
+
+                    /* The actual popup (appears on top) */
+                    .popup .popuptext {
+                    visibility: hidden;
+                    width: 160px;
+                    background-color: #555;
+                    color: #fff;
+                    text-align: center;
+                    border-radius: 6px;
+                    padding: 8px 0;
+                    position: absolute;
+                    z-index: 1;
+                    bottom: 125%;
+                    left: 50%;
+                    margin-left: -80px;
+                    }
+
+                    /* Popup arrow */
+                    .popup .popuptext::after {
+                    content: "";
+                    position: absolute;
+                    top: 100%;
+                    left: 50%;
+                    margin-left: -5px;
+                    border-width: 5px;
+                    border-style: solid;
+                    border-color: #555 transparent transparent transparent;
+                    }
+
+                    /* Toggle this class when clicking on the popup container (hide and show the popup) */
+                    .popup .show {
+                    visibility: visible;
+                    -webkit-animation: fadeIn 1s;
+                    animation: fadeIn 1s
+                    }
+
+                    /* Add animation (fade in the popup) */
+                    @-webkit-keyframes fadeIn {
+                    from {opacity: 0;}
+                    to {opacity: 1;}
+                    }
+
+                    @keyframes fadeIn {
+                    from {opacity: 0;}
+                    to {opacity:1 ;}
+                    }
+                </style>
+                <script>
+                    // When the user clicks on <div>, open the popup
+                    function myFunction() {
+                      var popup = document.getElementById("myPopup");
+                      popup.classList.toggle("show");
+                    }
+                </script>
+            </div> 
+        </div>
+    </div>
+</section><!--/#do_action-->
+
+	{% endblock %}

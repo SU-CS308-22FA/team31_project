@@ -1,0 +1,27 @@
+{% extends 'dashboard/base.html' %}
+{% block content%}
+    <div class="container-fluid px-2 px-md-4">
+      <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url('https://pbs.twimg.com/media/E6BMhRhXEAQisl1.jpg:large');">
+        <span class="mask  bg-gradient-primary  opacity-6"></span>
+      </div>
+      <div class="card card-body mx-3 mx-md-4 mt-n6">
+        <div class="row gx-4 mb-2">
+          <div class="col-auto">
+          </div>
+        </div>
+        <div class="row">
+            <form method = "POST" action="/dashboard/branches">
+                <h6 class="mb-0" style="text-align: left; font-size: large ; margin-left: 20 ;" >About Us</h6>
+                <p style="margin-left: 10; max-width: 580px;"> <br>TFF Trading Cards has founded by Omay Ece Ayyıldız, Berkant Kartop, Oğuzhan Kaya. 
+                    It is an eCommerce site for buying trading cards of Turkish football players. 
+                    The main goal of the founders was bringing the trading card culture to Turkey.
+                    Trading cards are one of the simple prodcuts which can be considered team merchandise, but today they have became a physical version of NFT's(Non Fungeable Tokens). 
+                    Trading Cards market had growth 6.1 billion US dollars. This kind of a market can be created in Turkey too.<br> <br>
+                    In 2016 before a match, 5 thousand turkey national team jerseys had sold with the price tag of 140 turkish liras. 
+                    Turkish football fans are willing to support their team in any way possible due to their love for football.
+                    Since there is no competion Turkish Football Federation can dominate the market easily. </p>
+            </form>
+        </div>
+      </div>
+    </div>
+{% endblock content %}
