@@ -107,10 +107,12 @@
 											<h2>{{ card.price }} TL</h2>
 											<p >{{ card.card_title }}</p>
 											<a href="/store/add_to_cart" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											<a href="/store/item?item_id={{ card.id }}" class="btn btn-default add-to-cart">Info</a>
 											<div class="product-overlay">
 												<div class="overlay-content">
 													<h2>{{ card.price }} TL</h2>
 													<a href="/store/add_to_cart?item_id={{card.id}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+													<a href="/store/item?item_id={{ card.id }}" class="btn btn-default add-to-cart">Info</a>
 												</div>
 											</div>
 										</div>
@@ -118,6 +120,7 @@
 											<div class="overlay-content">
 												<h2>{{ card.price }} TL</h2>
 												<a href="/store/add_to_cart?item_id={{card.id}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												<a href="/store/item?item_id={{ card.id }}" class="btn btn-default add-to-cart">Info</a>
 											</div>
 										</div>
 								</div>

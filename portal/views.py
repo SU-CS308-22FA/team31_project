@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserCreationForm,UserForm,UserProfileForm
 from .models import StaffProfile, Favorites, TradingCard, Wishlist, Sold, Cart, UserPaymentMethod
 from django.contrib.sites.shortcuts import get_current_site
+from django.db.models import Q
 
 # Create your views here.
 
@@ -123,7 +124,7 @@ def RemoveLike(request):
             return redirect("/dashboard/favorites")
         else:
             return HttpResponse(status=200)
-    
+###
 @login_required()
 def SelfServiceWishlist(request):
     if(request.method == "GET"):
@@ -133,6 +134,7 @@ def SelfServiceWishlist(request):
         cards = list(TradingCard.objects.filter(pk__in = wishlist).values())
         return render(request,'dashboard/wishlist.html',{"wishlists":cards})
 
+###
 @login_required()
 def CreateWishlist(request):
     if(request.method == "GET"):
@@ -142,7 +144,7 @@ def CreateWishlist(request):
         wishlist =  Wishlist(user = request.user, card = card)
         wishlist.save()
         return HttpResponse(status=200)
-
+###
 @login_required()
 def RemoveWishlist(request):
     if(request.method == "GET"):
@@ -203,7 +205,7 @@ def MarketplaceDetail(request):
         else:
             return HttpResponse(status=404)        
 
-@login_required
+#@login_required
 def Purchases(request):
     if(request.method == "GET"):
         user = request.user
@@ -213,7 +215,7 @@ def Purchases(request):
         cards = zip(cards,sold_list)
         return render(request,'dashboard/sold.html',{"sold":cards})
 
-@login_required
+#@login_required
 def RemoteCart(request):
     if(request.method == "GET"):
         user = request.user
@@ -227,7 +229,7 @@ def RemoteCart(request):
         cards = zip(cards,cart_list)
         return render(request,'store/cart.html',{"cart":cards,"payment_methods":payment,"total":total})
 
-@login_required
+#@login_required
 def AddRemoteCart(request):
     if(request.method == "GET"):
         user = request.user
@@ -239,7 +241,7 @@ def AddRemoteCart(request):
         return redirect("/store/")
         
 
-@login_required
+#@login_required
 def RemoveRemoteCart(request):
     if(request.method == "GET"):
         user = request.user
@@ -248,7 +250,7 @@ def RemoveRemoteCart(request):
         cart.delete()
         return redirect("/store/cart")
 
-@login_required
+#@login_required
 def UpdateRemoteCart(request):
     if(request.method == "GET"):
         user = request.user
@@ -267,13 +269,13 @@ def UpdateRemoteCart(request):
             cart.delete()
         return redirect("/store/cart")
 
-@login_required
+#@login_required
 def CreditCardScreen(request):
     if(request.method == "GET"):
         payment = list(UserPaymentMethod.objects.filter(user = request.user).values())
         return render(request,'store/checkout.html',{"payment_methods":payment,"showPayment":len(payment)!=0})
 
-@login_required
+#@login_required
 def AddPaymentMethod(request):
     if(request.method == "POST"):
         
@@ -285,9 +287,42 @@ def AddPaymentMethod(request):
         payment_method.save()
         return redirect("/store/payment_methods")
 
-@login_required
+#@login_required
 def DeletePaymentMethod(request):
     if(request.method == "GET"):
         payment_method = UserPaymentMethod.objects.get(pk = request.GET.get("id"))
         payment_method.delete()
         return redirect("/store/payment_methods")
+
+def TffBranches(request):
+    return render(request, "dashboard/branches.html")
+
+def aboutus(request):
+    return render(request, "dashboard/aboutus.html")
+
+def buy(request):
+    if(request.method == "GET"):
+        user = request.user
+        cart_list = list(Cart.objects.filter(user = user).values())
+        cart = [cart["card_id"] for cart in cart_list]
+        cards = list(TradingCard.objects.filter(pk__in = cart).values())
+        total = 0
+        for card in cards:
+            total += card["price"]
+        payment = list(UserPaymentMethod.objects.filter(user = user).values())
+        cards = zip(cards,cart_list)
+        return render(request,"store/buy.html",{"cart":cards,"payment_methods":payment,"showPayment":len(payment)!=0,"total":total})
+
+@login_required
+def addPurchase(request):
+    if(request.method == "GET"):
+        user = request.user
+        id = request.GET.get("item_id")
+        pk = request.GET.get("pk_id")
+        card = TradingCard.objects.get(id = id)
+        sold = Sold(user = user, card = card, count = 1)
+        sold.save()
+        cart = Cart.objects.get(pk=pk)
+        cart.delete()
+        return redirect("/dashboard/purchases")
+

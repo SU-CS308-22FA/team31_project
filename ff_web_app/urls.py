@@ -43,8 +43,11 @@ urlpatterns = [
     path('store/payment_methods',views.CreditCardScreen, name="Marketplace Credit Card Screen"),
     path('store/payment_methods/add_card/',views.AddPaymentMethod, name="Marketplace Add Credit Card"),
     path('store/payment_methods/delete_card/',views.DeletePaymentMethod, name="Marketplace Add Credit Card"),
-
     path('delete_account',views.DeleteAccount,name="Delete Account Page"),
-    path('logout',views.Logout,name="Logout Page")
+    path('logout',views.Logout,name="Logout Page"),
+    path('dashboard/branches',views.TffBranches,name="TFF Branches Page"),
+    path('dashboard/aboutus',views.aboutus,name="about us"),
+    path('store/buy',views.buy, name="Buy"),
+    path('store/add_purch',views.addPurchase, name="Add Purchase")
 
 ]

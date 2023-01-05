@@ -1,0 +1,53 @@
+{% extends 'dashboard/base.html' %}
+{% block content%}
+    <div class="container-fluid px-2 px-md-4">
+      <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url('https://cdn.yeniakit.com.tr/images/news/625/volkan-demirel-0b75be.jpg');">
+        <span class="mask  bg-gradient-primary  opacity-6"></span>
+      </div>
+      <div class="card card-body mx-3 mx-md-4 mt-n6">
+        <div class="row gx-4 mb-2">
+          <div class="col-auto">
+          </div>
+        </div>
+        <div class="row">
+          <form method = "POST" action="/dashboard/branches">
+          <div class="row">
+            <h6 class="mb-0" style="text-align: left; font-size: large ;">TFF Branches</h6>
+
+            <h6 style="font-family: Arial, Helvetica, sans-serif; font-size: small; font-weight: 600;" ><br> Adana Bölge Müdürlüğü </h6>
+                      <p style="font-size:smaller;">
+                        Adres : TFF GÜNDÜZ TEKİN ONAY TESİSLERİ <br> 
+                        TOROS MH. GÜNDÜZ TEKİN ONAY SOK. 78045 KAPI NO: 37  POSTA KODU: 01170 ÇUKUROVA / ADANA <br>
+                        Telefon : 0322 2320295-96 <br>
+                        Fax : 0 322 232 02 97 <br>
+                      </p>
+                      <h6 style="font-family: Arial, Helvetica, sans-serif; font-size: small; font-weight: 600;" > Ankara Bölge Müdürlüğü </h6>
+                      <p style="font-size:smaller;">
+                        Adres : Adres : EHLİBEYT MAH. 6. SOK. NO:3 06520 BALGAT / ANKARA  <br>
+                        Telefon : 0312  473 45 45 <br>
+                        Faks : 0312 473 46 33 <br>
+                      </p>
+                      <h6 style="font-family: Arial, Helvetica, sans-serif; font-size: small; font-weight: 600;" > Antalya Bölge Müdürlüğü </h6>
+                      <p style="font-size:smaller;">
+                        Adres : PINARBAŞI MAH. 711 SOKAK AŞİYAN SİTESİ N: 1-2 Blok ANTALYA  <br>
+                        Telefon : 0242 230 34 00 <br>
+                        Fax : 0242 230 35 00 <br>
+                      </p>
+                      <h6 style="font-family: Arial, Helvetica, sans-serif; font-size: small; font-weight: 600;" > İstanbul Bölge Müdürlüğü </h6>
+                      <p style="font-size:smaller;">
+                        Adres : KONAKLAR MAH. SÖĞÜT SK. N:9 4.LEVENT / İST.  <br>
+                        Telefon : 0212 279 30 70 - 279 10 29 <br>
+                        Fax : 0212 279 26 06 - 325 58 82 <br>
+                      </p>
+                      <h6 style="font-family: Arial, Helvetica, sans-serif; font-size: small; font-weight: 600;" > İzmir Bölge Müdürlüğü                      </h6>
+                      <p style="font-size:smaller;">
+                        Adres : ÇİÇEK PLAZA ÇINAR MAHALLESİ FATİH CADDESİ NO: 1/23 KAT: 6 DAİRE 618 BORNOVA / İZMİR                        <br>
+                        Telefon: 0232 435 72 72 <br>
+                        Fax: 0232 435 37 72 <br>
+                      </p>                     
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+{% endblock content %}

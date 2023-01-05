@@ -1,71 +1,71 @@
 {% extends 'store/base.html' %}
 {% block content%}
 
-	<section id="cart_items">
-		<div class="container">
-			<div class="breadcrumbs">
-				<ol class="breadcrumb">
-				  <li><a href="#">Home</a></li>
-				  <li class="active">Payment Methods</li>
-				</ol>
-			</div><!--/breadcrums-->
+<section id="cart_items">
+	<div class="container">
+		<div class="breadcrumbs">
+			<ol class="breadcrumb">
+			  <li><a href="#">Home</a></li>
+			  <li class="active">Payment Methods</li>
+			</ol>
+		</div><!--/breadcrums-->
 
 
-			<div class="register-req">
-				<p>Please add a payment method in order to buy a product.</p>
-			</div><!--/register-req-->
+		<div class="register-req">
+			<p>Please add a payment method in order to buy a product.</p>
+		</div><!--/register-req-->
 
-			<div class="shopper-informations">
-				<div class="row">
-					<div class="col-sm-3">
-						<div class="shopper-info">
-							<p>Add Card Information</p>
-							<form action="/store/payment_methods/add_card/" method="POST">
-								{% csrf_token %}
-								<input name = "" type="text" placeholder="Display Name">
-								<input name = "card_number" type="text" placeholder="Card Number">
-								<input name = "card_owner" type="text" placeholder="Card Owner">
-								<input name = "expire_date" type="date" placeholder="Expire Date">
-								<input name = "cvv" type="password" placeholder="CVV">
-								<input type="submit" class="btn btn-primary" href=""></a>
-							</form>
-						</div>
-					</div>				
-				</div>
+		<div class="shopper-informations">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="shopper-info">
+						<p>Add Card Information</p>
+						<form action="/store/payment_methods/add_card/" method="POST">
+							{% csrf_token %}
+							<input name = "" type="text" placeholder="Display Name">
+							<input name = "card_number" type="text" placeholder="Card Number">
+							<input name = "card_owner" type="text" placeholder="Card Owner">
+							<input name = "expire_date" type="date" placeholder="Expire Date">
+							<input name = "cvv" type="password" placeholder="CVV">
+							<input type="submit" class="btn btn-primary" href=""></a>
+						</form>
+					</div>
+				</div>				
 			</div>
-			{% if showPayment %}
-			<div class="review-payment">
-				<h2>Payment Methods</h2>
-			</div>
-
-			<div class="table-responsive cart_info">
-				<table class="table table-condensed">
-					<thead>
-						<tr class="cart_menu">
-							<td class="description">Card Number</td>
-							<td class="price"></td>
-
-						</tr>
-					</thead>
-					<tbody>
-
-						{% for card in payment_methods%}
-						<tr>
-							<td class="cart_description">
-								<h4><a href="">{{ card.credit_card }}</a></h4>
-							</td>
-							<td class="cart_delete">
-								<br>
-								<a class="cart_quantity_delete" href="/store/payment_methods/delete_card?id={{card.id}}"><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
-						{% endfor %}
-					</tbody>
-				</table>
-			</div>
-			{% endif %}
-			<br>
 		</div>
-	</section> <!--/#cart_items-->
+		{% if showPayment %}
+		<div class="review-payment">
+			<h2>Payment Methods</h2>
+		</div>
+
+		<div class="table-responsive cart_info">
+			<table class="table table-condensed">
+				<thead>
+					<tr class="cart_menu">
+						<td class="description">Card Number</td>
+						<td class="price"></td>
+
+					</tr>
+				</thead>
+				<tbody>
+
+					{% for card in payment_methods%}
+					<tr>
+						<td class="cart_description">
+							<h4><a href="">{{ card.credit_card }}</a></h4>
+						</td>
+						<td class="cart_delete">
+							<br>
+							<a class="cart_quantity_delete" href="/store/payment_methods/delete_card?id={{card.id}}"><i class="fa fa-times"></i></a>
+						</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		{% endif %}
+		<br>
+	</div>
+</section> <!--/#cart_items-->
 
 	{% endblock %}
